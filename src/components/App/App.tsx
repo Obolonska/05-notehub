@@ -4,7 +4,7 @@ import css from "./App.module.css";
 // import ReactPaginate from "react-paginate";
 // import { useDebouncedCallback } from "use-debounce";
 import SearchBox from "../SearchBox/SearchBox";
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { getNotes } from "../../services/noteService";
 import NoteList from "../NoteList/NoteList";
 import { useQuery } from "@tanstack/react-query";
