@@ -14,9 +14,21 @@
 .modal {
   background-color: #ffffff;
   padding: 24px;
+  padding-top: 50px;
   border-radius: 8px;
   max-width: 500px;
   width: 100%;
   position: relative;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  color: gray;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 25px;
 }

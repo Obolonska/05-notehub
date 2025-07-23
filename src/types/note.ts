@@ -14,9 +14,3 @@ export interface NewNote {
   content: string;
   tag: NoteTag;
 }
-export interface NoteUpdateData {
-  id: string;
-  title?: string;
-  content?: string;
-  tag?: NoteTag;
-}
