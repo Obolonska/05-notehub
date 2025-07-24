@@ -14,7 +14,7 @@ const initialValues: NewNote = {
 
 const OrderFormSchema = Yup.object().shape({
   title: Yup.string()
-    .min(3, "Title must be at least 2 characters")
+    .min(3, "Title must be at least 3 characters")
     .max(50, "Title is too long")
     .required("Title is required"),
   content: Yup.string().max(500, "Content is too long"),
@@ -25,9 +25,10 @@ const OrderFormSchema = Yup.object().shape({
 
 interface NoteFormProps {
   onSuccess: () => void;
+  onCancel: () => void;
 }
 
-export default function NoteForm({ onSuccess }: NoteFormProps) {
+export default function NoteForm({ onSuccess, onCancel }: NoteFormProps) {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
@@ -84,11 +85,7 @@ export default function NoteForm({ onSuccess }: NoteFormProps) {
         </div>
 
         <div className={css.actions}>
-          <button
-            type="button"
-            className={css.cancelButton}
-            onClick={onSuccess}
-          >
+          <button type="button" className={css.cancelButton} onClick={onCancel}>
             Cancel
           </button>
           <button

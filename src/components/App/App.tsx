@@ -1,7 +1,6 @@
 import { useState } from "react";
 import css from "./App.module.css";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import ReactPaginate from "react-paginate";
 import { useDebouncedCallback } from "use-debounce";
 import SearchBox from "../SearchBox/SearchBox";
 import { getNotes } from "../../services/noteService";
@@ -11,6 +10,7 @@ import Modal from "../Modal/Modal";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import EmptyState from "../EmptyState/EmptyState";
+import Pagination from "../Pagination/Pagination";
 
 const useToggle = (): [boolean, () => void, () => void] => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,16 +42,10 @@ export default function App() {
       <header className={css.toolbar}>
         <SearchBox value={searchQuery} onSearch={updateSearchQuery} />
         {totalPages > 1 && (
-          <ReactPaginate
-            pageCount={totalPages}
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={1}
-            onPageChange={({ selected }) => setPage(selected + 1)}
-            forcePage={page - 1}
-            containerClassName={css.pagination}
-            activeClassName={css.active}
-            nextLabel="→"
-            previousLabel="←"
+          <Pagination
+            totalPages={totalPages}
+            page={page}
+            onPageChange={setPage}
           />
         )}
 
@@ -70,7 +64,7 @@ export default function App() {
       )}
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <NoteForm onSuccess={closeModal} />
+          <NoteForm onSuccess={closeModal} onCancel={closeModal} />
         </Modal>
       )}
     </div>

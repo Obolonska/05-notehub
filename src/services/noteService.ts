@@ -27,12 +27,12 @@ export const getNotes = async (
   return response.data;
 };
 
-export const deleteNote = async (noteId: string) => {
-  const res = await axios.delete(`/notes/${noteId}`);
+export const deleteNote = async (noteId: string): Promise<Note> => {
+  const res = await axios.delete<Note>(`/notes/${noteId}`);
   return res.data;
 };
 
-export const addNote = async (noteData: NewNote) => {
+export const addNote = async (noteData: NewNote): Promise<Note> => {
   const res = await axios.post<Note>(`/notes/`, noteData);
   return res.data;
 };
